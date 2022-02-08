@@ -11,9 +11,6 @@ router.get('/', async(req, res) => {
     const productData = await Product.findAll({
       include: [{model: Category}, {model: Tag}],
     });
-    res.render('homepage', {
-      categories,
-    });
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -28,10 +25,8 @@ router.get('/:id', async(req, res) => {
     const productData = await Product.findByPk(req.params.id, {
       include: [{model: Category}, {model: Tag}],
     });
-    const product = productData.get({ plain: true });
-    res.render('product', { product });
+    res.status(200).json(productData);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });

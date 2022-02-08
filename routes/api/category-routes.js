@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Product,
-          attributes: ['name','price','stock','category_id'],
+          attributes: ['product_name','price','stock','category_id'],
         },
       ],
     });
@@ -29,14 +29,12 @@ router.get('/:id', async (req, res) => {
       include: [
         {
         model: Product,
-        attributes: ['name','price','stock','category_id'],
+        attributes: ['product_name','price','stock','category_id'],
         },
       ],
     });
-    const category = categoryData.get({ plain: true });
-    res.render('category', { category });
+    res.status(200).json(categoryData);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
