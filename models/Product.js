@@ -26,6 +26,7 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     }
+    
   },
   {
     sequelize,
